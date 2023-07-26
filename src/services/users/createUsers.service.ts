@@ -1,8 +1,8 @@
 import { Repository } from "typeorm";
-import { TUserRequest, TUserResponse } from "../interfaces/users.interfaces";
-import { User } from "../entities/user.entity";
-import { AppDataSource } from "../data-source";
-import { userSchemaResponse } from "../schemas/user.schema";
+import { TUserRequest, TUserResponse } from "../../interfaces/users.interfaces";
+import { User } from "../../entities/user.entity";
+import { AppDataSource } from "../../data-source";
+import { userSchemaResponse } from "../../schemas/user.schema";
 
 const CreateUsersService = async (
   userData: TUserRequest
