@@ -4,12 +4,12 @@ import {
   TUserResponse,
   TUserUpdateRequest,
 } from "../interfaces/users.interfaces";
-import createUsersService from "../services/createUsers.service";
-import listAllUsersService from "../services/listAllUsers.service";
-import retrieveUsersService from "../services/retrieveUsers.service";
-import updateUsersService from "../services/updateUsers.service";
-import softDeleteUsersService from "../services/softDeleteUsers.service";
-import recoverUsersService from "../services/recoverUsers.service";
+import createUsersService from "../services/users/createUsers.service";
+import listAllUsersService from "../services/users/listAllUsers.service";
+import retrieveUsersService from "../services/users/retrieveUsers.service";
+import updateUsersService from "../services/users/updateUsers.service";
+import softDeleteUsersService from "../services/users/softDeleteUsers.service";
+import recoverUsersService from "../services/users/recoverUsers.service";
 
 const createUsersController = async (
   req: Request,
