@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { contactsSchemaResponse } from "./contact.schema";
 
 const userSchema = z.object({
   id: z.number().positive().int(),
@@ -31,6 +32,16 @@ const userSchemaUpdateRequest = userSchemaRequest
   .partial()
   .omit({ admin: true });
 
+const userSchemaResponseContacts = userSchemaResponse
+  .omit({
+    admin: true,
+    createdAt: true,
+    deletedAt: true,
+  })
+  .extend({
+    contacts: contactsSchemaResponse,
+  });
+
 export {
   userSchema,
   userSchemaRequest,
@@ -38,4 +49,5 @@ export {
   userLoginSchema,
   usersSchemaResponse,
   userSchemaUpdateRequest,
+  userSchemaResponseContacts,
 };
