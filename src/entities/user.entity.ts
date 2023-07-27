@@ -5,15 +5,10 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   BeforeInsert,
-  BeforeSoftRemove,
-  BeforeUpdate,
-  BeforeRemove,
   DeleteDateColumn,
-  AfterSoftRemove,
-  BeforeRecover,
-  AfterRemove,
-  AfterRecover,
+  OneToMany,
 } from "typeorm";
+import { Contact } from "./contact.entity";
 
 @Entity("users")
 class User {
@@ -45,6 +40,9 @@ class User {
   async hashPassword() {
     this.password = await hash(this.password, 10);
   }
+
+  @OneToMany(() => Contact, (contact) => contact.user)
+  contacts: Contact[];
 }
 
 export { User };
