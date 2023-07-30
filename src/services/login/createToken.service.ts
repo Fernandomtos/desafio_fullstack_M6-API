@@ -5,6 +5,8 @@ import { AppDataSource } from "../../data-source";
 import AppError from "../../error";
 import jwt from "jsonwebtoken";
 import { compare } from "bcryptjs";
+import { TUserResponse } from "../../interfaces/users.interfaces";
+import { userSchemaResponse } from "../../schemas/user.schema";
 
 const createTokenService = async (
   loginData: TLoginRequest
@@ -41,7 +43,9 @@ const createTokenService = async (
     }
   );
 
-  return { token };
+  const userData: TUserResponse = userSchemaResponse.parse(user);
+
+  return { userData, token };
 };
 
 export default createTokenService;
