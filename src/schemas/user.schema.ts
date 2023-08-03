@@ -28,6 +28,10 @@ const userLoginSchema = userSchema.pick({
   admin: true,
 });
 
+const userEmailSchema = userLoginSchema.pick({
+  email: true,
+});
+
 const userSchemaUpdateRequest = userSchemaRequest
   .partial()
   .omit({ admin: true });
@@ -50,4 +54,5 @@ export {
   usersSchemaResponse,
   userSchemaUpdateRequest,
   userSchemaResponseContacts,
+  userEmailSchema,
 };
