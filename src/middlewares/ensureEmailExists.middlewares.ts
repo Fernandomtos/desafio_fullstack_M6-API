@@ -21,8 +21,12 @@ const ensureEmailExistsMiddlewares = async (
     email: emailUser,
   });
 
-  if (findEmail) {
+  if (findEmail && req.originalUrl != "/recoverPass") {
     throw new AppError("Email already exists", 409);
+  }
+
+  if (req.originalUrl == "/recoverPass") {
+    res.locals.id = findEmail?.id;
   }
 
   return next();

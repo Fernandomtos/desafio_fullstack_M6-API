@@ -6,6 +6,7 @@ import {
 import { User } from "../../entities/user.entity";
 import { AppDataSource } from "../../data-source";
 import { userSchemaResponse } from "../../schemas/user.schema";
+import { hash } from "bcryptjs";
 
 const updateUsersService = async (
   userData: TUserUpdateRequest,
@@ -13,6 +14,9 @@ const updateUsersService = async (
 ): Promise<TUserResponse> => {
   const userRepository: Repository<User> = AppDataSource.getRepository(User);
 
+  if (userData.password) {
+    userData.password = await hash(userData.password, 10);
+  }
   const oldUserData: User | null = await userRepository.findOneBy({
     id: userId,
   });
