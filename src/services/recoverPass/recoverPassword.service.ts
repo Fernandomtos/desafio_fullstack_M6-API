@@ -1,8 +1,6 @@
 import TUserEmailData from "../../interfaces/recoverPassword.interfaces";
 import nodemailer from "nodemailer";
-import { hash } from "bcryptjs";
 import crypto from "crypto";
-import { getRepository } from "typeorm";
 import updateUsersService from "../users/updateUsers.service";
 import { TUserUpdateRequest } from "../../interfaces/users.interfaces";
 import AppError from "../../error";
@@ -12,8 +10,8 @@ const recoverPasswordService = async (
   userId: number
 ): Promise<void> => {
   const transport = nodemailer.createTransport({
-    host: "sandbox.smtp.mailtrap.io",
-    port: 2525,
+    host: "smtp.sendgrid.net",
+    port: 587,
     auth: {
       user: "19fb67f0acc908",
       pass: "a0c52b0192dfb4",
