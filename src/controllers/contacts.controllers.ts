@@ -1,10 +1,14 @@
 import { Request, Response } from "express";
-import { TContactRequest } from "../interfaces/contacts.interfaces";
+import {
+  TContactRequest,
+  TContactUpdateRequest,
+} from "../interfaces/contacts.interfaces";
 import createContactsService from "../services/contacts/createContacts.service";
 import listAllContactsService from "../services/contacts/listAllContacts.service";
 import { Contact } from "../entities/contact.entity";
 import retrieveContactsUserService from "../services/contacts/retrieveContactsUser.service";
 import deleteContactsService from "../services/contacts/deleteContacts.service";
+import updateContactsService from "../services/contacts/updateContacts.service";
 
 const createContactsControllers = async (
   req: Request,
@@ -49,9 +53,22 @@ const deleteContactsController = async (
   return res.status(204).send();
 };
 
+const updateContactsController = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const contactData: TContactUpdateRequest = req.body;
+  const contactId: number = parseInt(req.params.id);
+
+  const updateUser = await updateContactsService(contactData, contactId);
+
+  return res.status(200).json(updateUser);
+};
+
 export {
   createContactsControllers,
   listAllContactsControllers,
   retrieveContactsUserControllers,
   deleteContactsController,
+  updateContactsController,
 };

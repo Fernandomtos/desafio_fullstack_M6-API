@@ -22,6 +22,11 @@ const contactsSchemaResponse = z.array(
   })
 );
 
+const contactSchemaResponse = contactSchema.omit({
+  createdAt: true,
+  deletedAt: true,
+});
+
 const contactSchemaUpdateRequest = contactSchemaRequest.partial();
 
 export {
@@ -29,4 +34,5 @@ export {
   contactSchemaRequest,
   contactsSchemaResponse,
   contactSchemaUpdateRequest,
+  contactSchemaResponse,
 };

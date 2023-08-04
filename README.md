@@ -10,10 +10,12 @@ Requisito:
 - **Serialização** utilizado a biblioteca **zod**;
 
 Necessário:
-1 - Fazer o clone do repositório;
-2 - Instalar as dependências do projeto com o comando: npm install;
-3 - Adicinor na raiz do projeto o arquivo .env e adicionar suas configurações;
-4 - Rodar o servidor de desenvolvimento com o comando: npm run dev;
+** - Fazer o clone do repositório;
+** - Instalar as dependências do projeto com o comando: npm install;
+** - Adicinor na raiz do projeto o arquivo .env e adicionar suas configurações;
+** - Rodar Migrations: npm run typeorm migration:run -- -d src/data-source;
+** - Rodar o servidor de desenvolvimento com o comando: npm run dev;
+**
 
 ## Repositório FrontEnd:
 
