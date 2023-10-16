@@ -10,13 +10,20 @@ import { hash } from "bcryptjs";
 
 const updateUsersService = async (
   userData: TUserUpdateRequest,
-  userId: number
+  userId: number,
+  userAdmin: string
 ): Promise<TUserResponse> => {
+
+  if (userAdmin != "admin") {
+    userData.admin = "userCommon";
+  }
+  
   const userRepository: Repository<User> = AppDataSource.getRepository(User);
 
   if (userData.password) {
     userData.password = await hash(userData.password, 10);
   }
+
   const oldUserData: User | null = await userRepository.findOneBy({
     id: userId,
   });

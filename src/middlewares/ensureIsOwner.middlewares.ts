@@ -12,7 +12,7 @@ const ensureIsOwnerMiddleware = (
 
   const userAdmin = res.locals.admin;
 
-  if (userIdParams != userIdToken && userAdmin != true) {
+  if (userIdParams != userIdToken && userAdmin != "admin") {
     throw new AppError("Insufficient permission", 403);
   }
 

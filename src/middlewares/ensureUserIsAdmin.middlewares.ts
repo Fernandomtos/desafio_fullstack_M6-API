@@ -8,10 +8,11 @@ const ensureUserIsAdminMiddleware = (
 ): void => {
   const userAdmin = res.locals.admin;
 
-  if (!userAdmin) {
+  if (userAdmin != "admin") {
     throw new AppError("Insufficient permission", 403);
   }
 
+  
   return next();
 };
 

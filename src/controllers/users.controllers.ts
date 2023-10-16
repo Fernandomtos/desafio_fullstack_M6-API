@@ -16,8 +16,9 @@ const createUsersController = async (
   res: Response
 ): Promise<Response> => {
   const userData: TUserRequest = req.body;
+  const userAdmin = res.locals.admin;
 
-  const newUser = await createUsersService(userData);
+  const newUser = await createUsersService(userData, userAdmin);
 
   return res.status(201).json(newUser);
 };
@@ -48,8 +49,9 @@ const updateUsersController = async (
 ): Promise<Response> => {
   const userData: TUserUpdateRequest = req.body;
   const userId: number = parseInt(req.params.id);
+  const userAdmin = res.locals.admin;
 
-  const updateUser = await updateUsersService(userData, userId);
+  const updateUser = await updateUsersService(userData, userId, userAdmin);
 
   return res.status(200).json(updateUser);
 };

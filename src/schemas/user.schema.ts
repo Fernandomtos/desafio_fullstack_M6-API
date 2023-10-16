@@ -6,7 +6,7 @@ const userSchema = z.object({
   name: z.string().max(45),
   email: z.string().email().max(60),
   password: z.string().max(120),
-  admin: z.boolean().default(false),
+  admin: z.enum(["userCommon", "admin"]).or(z.string()).default("userCommon"),
   fone: z.string().max(20),
   createdAt: z.string(),
   deletedAt: z.date().nullish(),
@@ -33,8 +33,8 @@ const userEmailSchema = userLoginSchema.pick({
 });
 
 const userSchemaUpdateRequest = userSchemaRequest
-  .partial()
-  .omit({ admin: true });
+  .partial();
+  // .omit({ admin: true });
 
 const userSchemaResponseContacts = userSchemaResponse
   .omit({

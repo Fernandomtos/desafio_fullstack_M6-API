@@ -10,6 +10,11 @@ import {
 } from "typeorm";
 import { Contact } from "./contact.entity";
 
+export enum Role {
+  userCommon = "userCommon",
+  admin = "admin"
+}
+
 @Entity("users")
 class User {
   @PrimaryGeneratedColumn("increment")
@@ -24,8 +29,8 @@ class User {
   @Column({ type: "varchar", length: 120 })
   password: string;
 
-  @Column({ type: "boolean", default: false })
-  admin?: boolean;
+  @Column({ type: "enum", enum: Role})
+  admin: string;
 
   @Column({ type: "varchar", length: 20 })
   fone: string;
