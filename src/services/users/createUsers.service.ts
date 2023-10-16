@@ -5,10 +5,15 @@ import { AppDataSource } from "../../data-source";
 import { userSchemaResponse } from "../../schemas/user.schema";
 
 const CreateUsersService = async (
-  userData: TUserRequest
+  userData: TUserRequest,
+  userAdmin: string,
 ): Promise<TUserResponse> => {
-  const userRepository: Repository<User> = AppDataSource.getRepository(User);
 
+  if(userAdmin != "admin") {
+    userData.admin = "userCommon"
+  }
+
+  const userRepository: Repository<User> = AppDataSource.getRepository(User);
   const user: User = userRepository.create(userData);
   await userRepository.save(user);
 

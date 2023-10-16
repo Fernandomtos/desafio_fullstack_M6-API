@@ -8,8 +8,9 @@ const recoverPasswordController = async (
 ): Promise<Response> => {
   const userEmail: TUserEmailData = req.body;
   const userId: number = parseInt(res.locals.id);
+  const userAdmin = res.locals.admin;
 
-  await recoverPasswordService(userEmail, userId);
+  await recoverPasswordService(userEmail, userId, userAdmin);
 
   return res.status(200).json("Email sended");
 };

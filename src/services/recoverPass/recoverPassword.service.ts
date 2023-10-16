@@ -7,7 +7,8 @@ import AppError from "../../error";
 
 const recoverPasswordService = async (
   userEmail: TUserEmailData,
-  userId: number
+  userId: number,
+  userAdmin: string
 ): Promise<void> => {
 
   // CONFIGURAÇÃO PARA MAILTRAP
@@ -55,7 +56,7 @@ const recoverPasswordService = async (
 
       const userData: TUserUpdateRequest = passwordData;
 
-      updateUsersService(userData, userId);
+      updateUsersService(userData, userId, userAdmin);
     })
     .catch(() => {
       throw new AppError("Fail to send mail", 404);
